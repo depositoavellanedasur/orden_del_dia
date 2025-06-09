@@ -1,0 +1,7 @@
+streamlit
+streamlit_autorefresh
+streamlit_option_menu
+streamlit_cookies_manager
+fpdf
+matplotlib
+supabase
