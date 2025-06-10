@@ -3,22 +3,18 @@ import pandas as pd
 import time
 from datetime import datetime
 from utils import highlight
+from supabase_connection import fetch_table_data
 
 @st.cache_data(ttl=60) 
 def fetch_data_impo():
-    arribos = pd.read_csv('data/arribos.csv')
-    pendiente_desconsolidar = pd.read_csv('data/pendiente_desconsolidar.csv')
-    verificaciones_impo = pd.read_csv('data/verificaciones_impo.csv')
-    retiros_impo = pd.read_csv('data/retiros_impo.csv')
-    retiros_impo['e-tally'] = retiros_impo['e-tally'].fillna("")
-    retiros_impo['Salida'] = retiros_impo['Salida'].fillna("")
-    otros_impo = pd.read_csv('data/otros_impo.csv')
-    otros_impo = otros_impo[otros_impo['Dia'] != '-']
-    existente_plz = pd.read_csv('data/existente_plz.csv')
-    existente_plz['e-tally'] = existente_plz['e-tally'].fillna("")
-    existente_alm = pd.read_csv('data/existente_alm.csv')
-    existente_alm['e-tally'] = existente_alm['e-tally'].fillna("")
-    ultima_actualizacion = pd.read_csv('data/ultima_actualizacion.csv')
+    arribos = fetch_table_data("arribos")
+    pendiente_desconsolidar = fetch_table_data("pendiente_desconsolidar")
+    verificaciones_impo = fetch_table_data("verificaciones_impo")
+    retiros_impo = fetch_table_data("retiros_impo")
+    otros_impo = fetch_table_data("otros_impo")
+    existente_plz = fetch_table_data("existente_plz")
+    existente_alm = fetch_table_data("existente_alm")
+    ultima_actualizacion = fetch_table_data("ultima_actualizacion")
     return arribos, pendiente_desconsolidar, verificaciones_impo, retiros_impo, otros_impo, existente_plz, existente_alm, ultima_actualizacion
 
 def show_page_impo():
