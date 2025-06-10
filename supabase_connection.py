@@ -1,9 +1,11 @@
 from supabase import create_client, Client
 import pandas as pd
-from tokens import url_supabase, key_supabase
 import os
 from datetime import datetime
 from supabase import create_client, Client
+
+url_supabase = os.getenv("url_supabase")
+key_supabase= os.getenv("key_supabase")
 supabase_client = create_client(url_supabase, key_supabase)
 
 def fetch_table_data(table_name):
