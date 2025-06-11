@@ -21,8 +21,6 @@ def fetch_data_expo():
     otros_expo = otros_expo[otros_expo['Dia'] != '-']
     
     remisiones = fetch_table_data("remisiones")
-    remisiones['Fecha'] = pd.to_datetime(remisiones['Fecha'], format='%d/%m')
-    remisiones = remisiones.sort_values(by="Fecha")
     
     pendiente_consolidar = fetch_table_data("pendiente_consolidar")
     listos_para_remitir = fetch_table_data("listos_para_remitir")
