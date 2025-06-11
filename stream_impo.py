@@ -39,7 +39,7 @@ def show_page_impo():
         existente_alm = existente_alm[existente_alm['Cliente'].str.contains('|'.join(mudanceras_filter), case=False, na=False)]
 
 
-    col_logo, col_title = st.columns([2, 5])
+    col_logo, col_title = st.columns([1, 6])
     with col_logo:
         st.image('logo.png')
         st.info(f'Última actualización: {last_update}')
