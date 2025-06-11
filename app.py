@@ -62,8 +62,8 @@ if not st.session_state['logged_in']:
 else:
     allowed_pages = (
         ["IMPO", "EXPO", "Logout"] if st.session_state['username'] == "deposito" else
-        ["IMPO", "EXPO", "Balanza", "Balanza2", "Plazoleta", "Logout"] if st.session_state['username'] in ["plazoleta", "mudancera"] else
-        ["IMPO", "EXPO", "Balanza", "Balanza2", "Plazoleta", "Tráfico", "IMPO - histórico", "EXPO - histórico",  "Logout"]
+        ["IMPO", "EXPO", "Balanza",  "Plazoleta", "Logout"] if st.session_state['username'] in ["plazoleta", "mudancera"] else
+        ["IMPO", "EXPO", "Balanza",  "Plazoleta", "Tráfico", "IMPO - histórico", "EXPO - histórico",  "Logout"]
     )
     page_selection = option_menu(
             None,  # No menu title
