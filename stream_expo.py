@@ -17,8 +17,7 @@ def fetch_data_expo():
     listos_para_remitir = fetch_table_data("listos_para_remitir")
     vacios_disponibles = fetch_table_data("vacios_disponibles")
     a_consolidar = fetch_table_data("a_consolidar")
-    ultima_actualizacion = fetch_table_data("ultima_actualizacion")
-    return arribos_expo_carga, arribos_expo_ctns, verificaciones_expo, otros_expo, remisiones, pendiente_consolidar, listos_para_remitir, vacios_disponibles, a_consolidar, ultima_actualizacion
+    return arribos_expo_carga, arribos_expo_ctns, verificaciones_expo, otros_expo, remisiones, pendiente_consolidar, listos_para_remitir, vacios_disponibles, a_consolidar
 
 @st.cache_data(ttl=60)
 def fetch_last_update():
@@ -30,7 +29,7 @@ def fetch_last_update():
 
 def show_page_expo():
     # Load data
-    arribos_expo_carga, arribos_expo_ctns, verificaciones_expo, otros_expo, remisiones, pendiente_consolidar, listos_para_remitir, vacios_disponibles, a_consolidar, ultima_actualizacion = fetch_data_expo()
+    arribos_expo_carga, arribos_expo_ctns, verificaciones_expo, otros_expo, remisiones, pendiente_consolidar, listos_para_remitir, vacios_disponibles, a_consolidar = fetch_data_expo()
     last_update = fetch_last_update()
     mudanceras_filter = ['Mercovan', 'Lift Van', 'Rsm', 'Fenisan', 'Moniport', 'Bymar', 'Noah']
     if st.session_state['username'] == "mudancera":
@@ -130,8 +129,6 @@ def show_page_expo():
         st.subheader("Vacios Disponibles")
         st.dataframe(vacios_disponibles, hide_index=True, use_container_width=True)
 
-    st.markdown("<hr>", unsafe_allow_html=True)
-    st.info(f"🕒 Última actualización: {ultima_actualizacion['hora'][0]}", icon="ℹ️")
     st.markdown("<hr>", unsafe_allow_html=True)
 
 if __name__ == "__main__":
