@@ -113,8 +113,6 @@ def show_page_impo():
                 hide_index=True, use_container_width=True)
     
     st.markdown("<hr>", unsafe_allow_html=True)
-    st.info(f"🕒 Última actualización: {ultima_actualizacion['hora'][0]}", icon="ℹ️")
-    st.markdown("<hr>", unsafe_allow_html=True)
 
 # Run the show_page function
 if __name__ == "__main__":
