@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime
 import time
 from utils import highlight
+from supabase_connection import fetch_table_data
 
 def fetch_data_expo():
     arribos_expo_carga = pd.read_csv('data/arribos_expo_carga.csv')
@@ -20,7 +21,15 @@ def fetch_data_expo():
     a_consolidar = pd.read_csv('data/a_consolidar.csv')
     ultima_actualizacion = pd.read_csv('data/ultima_actualizacion.csv')
     return arribos_expo_carga, arribos_expo_ctns, verificaciones_expo, otros_expo, remisiones, pendiente_consolidar, listos_para_remitir, vacios_disponibles, a_consolidar, ultima_actualizacion
-    
+
+@st.cache_data(ttl=60)
+def fetch_last_update():
+    update_log = fetch_table_data("update_log")
+    if not update_log.empty:
+        last_update = update_log[update_log['table_name'] == 'Arribos y existente']['last_update'].max()
+        return pd.to_datetime(last_update).strftime("%d/%m/%Y %H:%M")
+    return "No disponible"
+
 def show_page_expo():
     # Load data
     arribos_expo_carga, arribos_expo_ctns, verificaciones_expo, otros_expo, remisiones, pendiente_consolidar, listos_para_remitir, vacios_disponibles, a_consolidar, ultima_actualizacion = fetch_data_expo()
