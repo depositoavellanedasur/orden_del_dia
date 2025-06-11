@@ -6,20 +6,18 @@ from utils import highlight
 from supabase_connection import fetch_table_data
 
 def fetch_data_expo():
-    arribos_expo_carga = pd.read_csv('data/arribos_expo_carga.csv')
-    arribos_expo_ctns = pd.read_csv('data/arribos_expo_ctns.csv')
-    verificaciones_expo = pd.read_csv('data/verificaciones_expo.csv')
+    arribos_expo_carga = fetch_table_data("arribos_expo_carga")
+    arribos_expo_ctns = fetch_table_data("arribos_expo_ctns")
+    verificaciones_expo = fetch_table_data("verificaciones_expo")
     verificaciones_expo = verificaciones_expo[verificaciones_expo['Dia'] != '-']
-    otros_expo = pd.read_csv('data/otros_expo.csv')
+    otros_expo = fetch_table_data("otros_expo")
     otros_expo = otros_expo[otros_expo['Dia'] != '-']
-    remisiones = pd.read_csv('data/remisiones.csv')
-    remisiones['e-tally'] = remisiones['e-tally'].fillna("")
-    pendiente_consolidar = pd.read_csv('data/pendiente_consolidar.csv')
-    listos_para_remitir = pd.read_csv('data/listos_para_remitir.csv')
-    listos_para_remitir['e-tally'] = listos_para_remitir['e-tally'].fillna("")
-    vacios_disponibles = pd.read_csv('data/vacios_disponibles.csv')
-    a_consolidar = pd.read_csv('data/a_consolidar.csv')
-    ultima_actualizacion = pd.read_csv('data/ultima_actualizacion.csv')
+    remisiones = fetch_table_data("remisiones")
+    pendiente_consolidar = fetch_table_data("pendiente_consolidar")
+    listos_para_remitir = fetch_table_data("listos_para_remitir")
+    vacios_disponibles = fetch_table_data("vacios_disponibles")
+    a_consolidar = fetch_table_data("a_consolidar")
+    ultima_actualizacion = fetch_table_data("ultima_actualizacion")
     return arribos_expo_carga, arribos_expo_ctns, verificaciones_expo, otros_expo, remisiones, pendiente_consolidar, listos_para_remitir, vacios_disponibles, a_consolidar, ultima_actualizacion
 
 @st.cache_data(ttl=60)
