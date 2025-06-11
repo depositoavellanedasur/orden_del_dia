@@ -11,6 +11,9 @@ def fetch_data_impo():
     pendiente_desconsolidar = fetch_table_data("pendiente_desconsolidar")
     verificaciones_impo = fetch_table_data("verificaciones_impo")
     retiros_impo = fetch_table_data("retiros_impo")
+    retiros_impo['Dia'] = pd.to_datetime(retiros_impo['Día'], format='%d/%m')
+    retiros_impo = retiros_impo.sort_values(by="Dia")
+    retiros_impo['Dia'] = retiros_impo['Dia'].dt.strftime('%d/%m')
     otros_impo = fetch_table_data("otros_impo")
     existente_plz = fetch_table_data("existente_plz")
     existente_alm = fetch_table_data("existente_alm")
@@ -39,7 +42,7 @@ def show_page_impo():
         existente_alm = existente_alm[existente_alm['Cliente'].str.contains('|'.join(mudanceras_filter), case=False, na=False)]
 
 
-    col_logo, col_title = st.columns([1, 6])
+    col_logo, col_title = st.columns([2, 5])
     with col_logo:
         st.image('logo.png')
         st.info(f'Última actualización: {last_update}')

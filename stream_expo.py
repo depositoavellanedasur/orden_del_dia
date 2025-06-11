@@ -19,6 +19,9 @@ def fetch_data_expo():
     otros_expo = fetch_table_data("otros_expo")
     otros_expo = otros_expo[otros_expo['Dia'] != '-']
     remisiones = fetch_table_data("remisiones")
+    remisiones['Dia'] = pd.to_datetime(remisiones['Dia'], format='%d/%m')
+    remisiones = remisiones.sort_values(by="Dia")
+    remisiones['Dia'] = remisiones['Dia'].dt.strftime('%d/%m')
     pendiente_consolidar = fetch_table_data("pendiente_consolidar")
     listos_para_remitir = fetch_table_data("listos_para_remitir")
     vacios_disponibles = fetch_table_data("vacios_disponibles")
@@ -50,7 +53,7 @@ def show_page_expo():
         a_consolidar = a_consolidar[a_consolidar['Cliente'].str.contains('|'.join(mudanceras_filter), case=False, na=False)]
         
 
-    col_logo, col_title = st.columns([1, 6])
+    col_logo, col_title = st.columns([2, 5])
     with col_logo:
         st.image('logo.png')
         st.info(f'Última actualización: {last_update}')

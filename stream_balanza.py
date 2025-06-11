@@ -47,7 +47,7 @@ def show_page_balanza():
     balanza, balanza_impo, balanza_expo, balanza_historico_impo, balanza_historico_expo, balanza_historico = fetch_data_balanza()
     last_update = fetch_last_update()
 
-    col_logo, col_title = st.columns([1, 6])
+    col_logo, col_title = st.columns([2, 5])
     with col_logo:
         st.image('logo.png')
         st.info(f'Última actualización: {last_update}')
