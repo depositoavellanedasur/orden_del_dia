@@ -7,12 +7,23 @@ from supabase_connection import fetch_table_data
 
 def fetch_data_expo():
     arribos_expo_carga = fetch_table_data("arribos_expo_carga")
+    arribos_expo_carga['Fecha'] = pd.to_datetime(arribos_expo_carga['Fecha'], format='%d/%m')
+    arribos_expo_carga = arribos_expo_carga.sort_values(by="Fecha")
+    
     arribos_expo_ctns = fetch_table_data("arribos_expo_ctns")
+    arribos_expo_ctns['Fecha'] = pd.to_datetime(arribos_expo_ctns['Fecha'], format='%d/%m')
+    arribos_expo_ctns = arribos_expo_ctns.sort_values(by="Fecha")
+    
     verificaciones_expo = fetch_table_data("verificaciones_expo")
     verificaciones_expo = verificaciones_expo[verificaciones_expo['Dia'] != '-']
+    
     otros_expo = fetch_table_data("otros_expo")
     otros_expo = otros_expo[otros_expo['Dia'] != '-']
+    
     remisiones = fetch_table_data("remisiones")
+    remisiones['Fecha'] = pd.to_datetime(remisiones['Fecha'], format='%d/%m')
+    remisiones = remisiones.sort_values(by="Fecha")
+    
     pendiente_consolidar = fetch_table_data("pendiente_consolidar")
     listos_para_remitir = fetch_table_data("listos_para_remitir")
     vacios_disponibles = fetch_table_data("vacios_disponibles")
