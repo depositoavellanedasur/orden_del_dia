@@ -15,6 +15,7 @@ def fetch_data_impo():
     retiros_impo = retiros_impo.sort_values(by="Dia")
     retiros_impo['Dia'] = retiros_impo['Dia'].dt.strftime('%d/%m')
     otros_impo = fetch_table_data("otros_impo")
+    otros_impo = otros_impo[otros_impo['Dia'] != '-']
     existente_plz = fetch_table_data("existente_plz")
     existente_alm = fetch_table_data("existente_alm")
     return arribos, pendiente_desconsolidar, verificaciones_impo, retiros_impo, otros_impo, existente_plz, existente_alm
