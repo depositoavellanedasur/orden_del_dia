@@ -33,7 +33,7 @@ def fetch_last_update():
 def show_page_expo():
     # Load data
     arribos_expo_carga, arribos_expo_ctns, verificaciones_expo, otros_expo, remisiones, pendiente_consolidar, listos_para_remitir, vacios_disponibles, a_consolidar, ultima_actualizacion = fetch_data_expo()
-
+    last_update = fetch_last_update()
     mudanceras_filter = ['Mercovan', 'Lift Van', 'Rsm', 'Fenisan', 'Moniport', 'Bymar', 'Noah']
     if st.session_state['username'] == "mudancera":
         arribos_expo_carga = arribos_expo_carga[arribos_expo_carga['Cliente'].str.contains('|'.join(mudanceras_filter), case=False, na=False)]
@@ -50,6 +50,7 @@ def show_page_expo():
     col_logo, col_title = st.columns([2, 5])
     with col_logo:
         st.image('logo.png')
+        st.info(f'Última actualización: {last_update}')
     with col_title:
         current_day = datetime.now().strftime("%d/%m/%Y")
         st.title(f"Operaciones de EXPO a partir del {current_day}")

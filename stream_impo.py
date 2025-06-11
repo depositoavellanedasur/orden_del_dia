@@ -27,7 +27,7 @@ def fetch_last_update():
 def show_page_impo():
     # Load data
     arribos, pendiente_desconsolidar, verificaciones_impo, retiros_impo, otros_impo, existente_plz, existente_alm= fetch_data_impo()
-
+    last_update = fetch_last_update()
     mudanceras_filter = ['Mercovan', 'Lift Van', 'Rsm', 'Fenisan', 'Moniport', 'Bymar', 'Noah']
     if st.session_state['username'] == "mudancera":
         arribos = arribos[arribos['Cliente'].str.contains('|'.join(mudanceras_filter), case=False, na=False)]
@@ -42,6 +42,7 @@ def show_page_impo():
     col_logo, col_title = st.columns([2, 5])
     with col_logo:
         st.image('logo.png')
+        st.info(f'Última actualización: {last_update}')
     with col_title:
         current_day = datetime.now().strftime("%d/%m/%Y")
         st.title(f"Operaciones de IMPO a partir del {current_day}")
