@@ -11,7 +11,7 @@ def fetch_data_impo():
     pendiente_desconsolidar = fetch_table_data("pendiente_desconsolidar")
     verificaciones_impo = fetch_table_data("verificaciones_impo")
     retiros_impo = fetch_table_data("retiros_impo")
-    retiros_impo['Dia'] = pd.to_datetime(retiros_impo['Día'], format='%d/%m')
+    retiros_impo['Dia'] = pd.to_datetime(retiros_impo['Dia'], format='%d/%m')
     retiros_impo = retiros_impo.sort_values(by="Dia")
     retiros_impo['Dia'] = retiros_impo['Dia'].dt.strftime('%d/%m')
     otros_impo = fetch_table_data("otros_impo")
